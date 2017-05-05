@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt'),SALT_WORK_FACTOR = 10;
+var bcrypt = require('bcrypt-nodejs'),SALT_WORK_FACTOR = 10;
 
 var passLocalMongoose = require('passport-local-mongoose');
 
