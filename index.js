@@ -1,0 +1,8 @@
+var express = require('express')
+var app = express()
+var mongoose = require('mongoose')
+var bodyParser = require('body-parser')
+mongoose.connect('mongodb://gavisic:lenovo123@ds143000.mlab.com:43000/gavisic')
+app.use(bodyParser.json())
+app.use('/users', require('./user'))
+app.listen(3000 || process.env.PORT)

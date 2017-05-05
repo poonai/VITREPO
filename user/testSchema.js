@@ -1,0 +1,179 @@
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var data = new Schema({
+	user:{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
+	qualification:String,
+	designation:String,
+	Area_of_specialisation:String,
+    experience:{
+       outside:{
+          industry:String,
+          teaching:String
+      },
+       inside:String
+   },
+   phd_guidance:String,
+   phd_last5:String,
+   projects:[
+      {
+         types:String,
+         Collaborative:String,
+         title:String,
+         agency:String,
+         letter_no:String,
+         amount_sanctioned:String,
+         amount_recieved:String,
+         from:String,
+         to:String
+      }
+   ],
+   visit_labs:[
+      {
+         status:String,
+         name:String,
+         city:String,
+         from:String,
+         to:String,
+         Purpose:String
+      }
+    ],
+   awards:[
+      {
+         types:String,
+         name:String,
+         Branch:String,
+         award_name:String,
+         agency:String
+      }
+   ],
+   committee:[
+      {
+         types:String,
+         name:String,
+         Responsibility:String,
+         from:String,
+         to:String
+      }
+   ],
+   enrichment:[
+      {
+         title:String,
+         Details:String,
+         date:String
+      }
+   ],
+   teaching_methods:String,
+   online_courses:[
+      {
+         title:String,
+         length:String,
+         views:String,
+         Website:String
+      }
+    ],
+   patents:[
+      {
+         Inventor:String,
+         title:String,
+         income_generated:String,
+         date_filing:String,
+         date_granted:String
+      }
+   ],
+   consultancy:[
+      {
+         name:String,
+         title:String,
+         from:String,
+         to:String,
+         amount:String
+      }
+   ],
+   testing:[
+      {
+         name:String,
+         Certification:String,
+         date:String,
+         amount:String
+      }
+   ],
+   recharging:[
+      {
+         types:String,
+         name:String,
+         organiser:String,
+         date:String
+      }
+   ],
+   student_projects:{
+      inside:[
+         {
+            name:String,
+            Programme:String,
+            Branch:String,
+            Project_title:String,
+            Collaborator:String
+         }
+    ],
+      outside:[
+         {
+            types:String,
+            name:String,
+            Programme:String,
+            Branch:String,
+            title:String,
+            Industry_name:String,
+            Place:String
+         }
+      ]
+   },
+   seminars:[
+      {
+         types:String,
+         title:String,
+         name:String,
+         place:String,
+         participants:String,
+         within_the_state:String,
+         outside_state:String,
+         outside_country:String,
+         expense:String,
+         amount_collected:String,
+         amount_sponsorship:String,
+         agency:String
+      }
+   ],
+   publications:[
+      {
+         types:String,
+         details:String,
+         TR:String,
+         ISBN:String,
+         publisher:String,
+         collaborating_institute:String
+      }
+   ],
+	 created_at:{
+		 type:Date,
+		 default: Date.now()
+	 }
+});
+
+model = mongoose.model('userData', data);
+
+exports.createData = (data) => {
+	return new Promise(function(resolve, reject) {
+		var userData = new model(data)
+		userData.save((err, data) => {
+			if (err) {
+				reject(err)
+			} else {
+				resolve(data)
+			}
+		})
+	})
+}
